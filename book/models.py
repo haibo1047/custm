@@ -5,14 +5,41 @@ from django.utils import timezone
 # Create your models here.
 
 class Order(models.Model):
-    create_date = models.DateTimeField("_hide_create_date")
-    color = models.CharField("颜色",max_length = 20)
-    hair_type = models.CharField("发质类型",max_length = 20, default = "1")
-    hair_structure = models.CharField("发质结构",max_length = 20, default = "1")
-    scalp_moisture = models.CharField("头皮油性",max_length = 20, default = "1")
+    class Meta:
+        db_table = "Orders"
+
+    HAIR_TYPE_SETS = (
+        (1, "straight"),
+        (2, "wavy"),
+        (3, "curly"),
+        (4, "coily")
+    )
+
+    HAIR_STRUCTURE_SETS = (
+        (1, "fine"),
+        (2, "medium"),
+        (3, "coarse")
+    )
+    SCALP_MOISTURE_SETS = (
+        (1, "dry"),
+        (2, "normal"),
+        (3, "oily")
+    )
+    create_date = models.DateTimeField("create_date")
+    create_user = models.CharField("create_user",max_length=100,default="anoymous")
+    hair_type = models.IntegerField("hair_type", choices= HAIR_TYPE_SETS )
+    hair_structure = models.IntegerField("hair_structure", choices= HAIR_STRUCTURE_SETS)
+    scalp_moisture = models.IntegerField("scale_moisture", choices= SCALP_MOISTURE_SETS)
+    goals = models.CharField("goals", max_length=200, null= True)
+
+    # def save(self, *args, **kwargs):
+    #     if self.id is None:
+    #         self.create_date = timezone.now()
+    #     print(kwargs)
+    #     super(Order,self).save(*args, **kwargs)
 
     def was_published_recently(self):
         return timezone.now() >= self.create_date >= (timezone.now() - datetime.timedelta(days=1))
 
     def __str__(self):
-        return "["+str(self.create_date)+"--颜色:"+self.color+";发质类型:"+self.hair_type+";发质结构:"+self.hair_structure+";头皮油性:"+self.scalp_moisture+"]"
+        return str(self.id) + "--" + self.create_user

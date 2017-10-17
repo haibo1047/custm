@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+
+<script type="text/javascript">
+$(function() {
+    $("#pid_div").find("a").bind(
+        "click",function(){
+            if($("#"+this.id).hasClass("active")){
+                $("#"+this.id).removeClass("active")
+                $("#"+this.id).removeClass("btn-outline-success")
+                $("#"+this.id).addClass("btn-outline-info")
+            }
+            else{
+                $("#"+this.id).addClass("active")
+                $("#"+this.id).removeClass("btn-outline-info")
+                $("#"+this.id).addClass("btn-outline-success")
+            }
+        }
+    );
+
+    if($("#id_goals").val().length>0){
+        goals = $("#id_goals").val().split("|")
+        alert(goals)
+        for(i=0;i<goals.length;i++){
+            $("#"+goals[i].replace(/\s/g,"_")+"_id").click()
+        }
+    }
+
+});
+
+function fnext(){
+    var selected = 0
+    var selectedGoals = ""
+    var goals = $("#pid_div").find("a");
+    for(i=0;i<goals.length;i++){
+        if($("#"+goals[i].id).hasClass("active")){
+            if(selectedGoals.length>0)
+                selectedGoals += "|"
+            selected += 1
+            selectedGoals += $("#"+goals[i].id).html()
+        }
+    }
+    if(selected ==0){
+        alert("please choose at least 1 goal")
+        return
+    }
+    if(selected >5){
+        alert("you chose more than 5 goals")
+        return
+    }
+    $("#id_goals").val(selectedGoals)
+    $("#form1").submit()
+}
+</script>
+
+<form method="post" id="form1">
+    {% csrf_token %}
+    {% for field in form %}
+        <!--{% if field.errors %}-->
+            <!--{{ field.label }}-->
+            <!--{{ field.errors }}-->
+        <!--{% endif %}-->
+        {{ field }}
+    {% endfor %}
+
+</form>
+
+<div>
+    Select at most 5 goals
+</div>
+<div class="container-fluid" id="pid_div">
+    <a class="btn btn-outline-info" href="#" role="button" id="deep_condition_id">deep condition</a> &nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="replenish_hair_id">replenish hair</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="fix_split_ends_id">fix split ends</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="stengthen_id">stengthen</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="hydrate_id">hydrate</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="volumize_id">volumize</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="color_protection_id">color protection</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="thermal_protection_id">thermal protection</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="anti-aging_id">anti-aging</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="anti-frizz_id">anti-frizz</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="curl_definition_id">curl definition</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="shine_id">shine</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="staighten_id">staighten</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="nourish_roots_id">nourish roots</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="soothe_scalp_id">soothe scalp</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="oil_control_id">oil control</a>
+</div>
+
+<div align="center">
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">Continue</button>
+</div>
+
+
+
+{% endblock %}

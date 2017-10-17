@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+
+<script type="text/javascript">
+
+    var hair_type_sid,hair_structure_sid,scalp_moisture_sid
+    function setHairType(sid){
+        if(sid == hair_type_sid)
+            return;
+        if($("#"+hair_type_sid).hasClass("bg-primary")){
+            $("#"+hair_type_sid).removeClass("bg-primary")
+        }
+        $("#"+sid).addClass(" bg-primary ")
+        hair_type_sid = sid
+    }
+    function setHairStructure(sid){
+        if(sid == hair_structure_sid)
+            return;
+        if($("#"+hair_structure_sid).hasClass("bg-primary")){
+            $("#"+hair_structure_sid).removeClass("bg-primary")
+        }
+        $("#"+sid).addClass(" bg-primary ")
+        hair_structure_sid = sid
+    }
+    function setScalpMoisture(sid){
+        if(sid == scalp_moisture_sid)
+            return;
+        if($("#"+scalp_moisture_sid).hasClass("bg-primary")){
+            $("#"+scalp_moisture_sid).removeClass("bg-primary")
+        }
+        $("#"+sid).addClass(" bg-primary ")
+        scalp_moisture_sid = sid
+    }
+
+    function fnext(){
+        if($("#"+hair_type_sid).length==0 || $("#"+hair_structure_sid).length==0 || $("#"+scalp_moisture_sid).length==0 ){
+            alert('please make choice')
+            return;
+        }
+        $("#id_hair_type").val(hair_type_sid.substring(3))
+        $("#id_hair_structure").val(hair_structure_sid.substring(3))
+        $("#id_scalp_moisture").val(scalp_moisture_sid.substring(3))
+        $("#form1").submit()
+    }
+
+$(function() {
+    if ($("#id_hair_type").val().length>0){
+        setHairType("ht_"+$("#id_hair_type").val())
+    }
+    if ($("#id_hair_structure").length>0){
+        setHairStructure("hs_"+$("#id_hair_structure").val())
+    }
+    if ($("#id_scalp_moisture").length>0){
+        setScalpMoisture("sm_"+$("#id_scalp_moisture").val())
+    }
+  });
+
+</script>
+
+<form method="post" id="form1">
+    {% csrf_token %}
+    {% for field in form %}
+        {{ field }}
+    {% endfor %}
+
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="12" align="center">Build your hair profile</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr>
+        <td colspan="12" align="center">hair type</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+          <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_1">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">straight</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="3" align="center">
+            <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_2">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">wavy</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="3" align="center">
+            <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_3">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">curly</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="3" align="center">
+            <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_4">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">coily</p>
+                </div>
+            </div>
+      </td>
+    </tr>
+    <tr>
+        <td colspan="12" align="center">hair structure</td>
+    </tr>
+    <tr>
+      <td colspan="4" align="center">
+          <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_1">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">fine</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="4" align="center">
+            <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_2">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">medium</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="4" align="center">
+            <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_3">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">coarse</p>
+                </div>
+            </div>
+      </td>
+    </tr>
+    <tr>
+        <td colspan="12" align="center">SCALP MOISTURE</td>
+    </tr>
+    <tr>
+      <td colspan="4" align="center">
+          <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_1">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">dry</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="4" align="center">
+            <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_2">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">normal</p>
+                </div>
+            </div>
+      </td>
+      <td colspan="4" align="center">
+            <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_3">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">oil</p>
+                </div>
+            </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div align="center">
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">Continue</button>
+</div>
+
+
+
+{% endblock %}

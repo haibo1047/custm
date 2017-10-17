@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+    {% else %}
+    <table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th scope="row">id</th>
+      <td>{{order.id}}</td>
+    </tr>
+    <tr>
+      <th scope="row">hair type</th>
+      <td>{{order.hair_type}}</td>
+    </tr>
+    <tr>
+      <th scope="row">hair structure</th>
+      <td>{{order.hair_structure}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Scalp Moisture</th>
+      <td>{{order.scalp_moisture}}</td>
+    </tr>
+    <tr>
+      <th scope="row">create user</th>
+      <td>{{order.create_user}}</td>
+    </tr>
+    <tr>
+      <th scope="row">create date</th>
+      <td>{{order.create_date}}</td>
+    </tr>
+  </tbody>
+    </table>
+    {% endif %}
+
+
+<div align="center">
+    <a class="btn btn-primary" href="{% url 'orderlist' %}" role="button">Return</a>
+</div>
+{% endblock %}

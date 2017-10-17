@@ -1,6 +1,7 @@
-from django.shortcuts import render,get_object_or_404,get_list_or_404
+from django.shortcuts import render,get_object_or_404,get_list_or_404,redirect
 from django.template import loader
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -8,18 +9,47 @@ from django.http import HttpResponse
 from django.http import Http404
 from .models import Order
 from django.utils import timezone
+from .forms import OrderForm
+from django.contrib.auth.models import User
+from .utils import *
 
 class DetailView(generic.DetailView):
     model = Order
-    template_name = "book/detail.html"
+    template_name = "orders/detail.html"
 
-def index(request):
+@login_required
+def orderlist(request):
     orders = Order.objects.filter(create_date__lte=timezone.now()).order_by("id")
-    output = "|".join([ str(eo.id)+eo.color for eo in orders])
-    template = loader.get_template("book/index.html")
+    # output = "|".join([ str(eo.id)+eo.color for eo in orders])
+    template = loader.get_template("orders/list.html")
     context = {"order_list":orders}
     return HttpResponse(template.render(context,request))
 
+def test(request):
+    return render(request,"base.html")
+
+def home(request):
+
+    return render(request,"home.html")
+
+def order1(request):
+    if request.method == "POST":
+        # form = OrderHairProfileForm(request.POST)
+        return order2(request)
+    else:
+        form = OrderForm(initial={"create_user":User.objects.first(),"create_date":timezone.now()})
+
+    return render(request,"orders/order1.html", {"form":form})
+
+def order2(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid() :
+            print(form.cleaned_data)
+            order = form.save(commit=True)
+            return redirect("home")
+
+    return render(request,"orders/order2.html", { "form":form })
 
 # def detail(request, id):
 #     try:

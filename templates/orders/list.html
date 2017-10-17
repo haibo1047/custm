@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">orders</li>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-striped">
+    <thead >
+      <tr>
+        <th>order info</th>
+        <th>create_user</th>
+        <th>create_date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in order_list %}
+        <tr>
+          <td>
+            <a href="{% url 'orderdetail' order.pk %}">{{ order }}</a>
+          </td>
+          <td class="align-middle">{{ order.create_user }}</td>
+          <td class="align-middle">{{ order.create_date }}</td>
+          <td></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
