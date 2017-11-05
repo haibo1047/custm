@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% load staticfiles %}
 
 {% block content %}
@@ -24,9 +24,8 @@ $(function() {
 
     if($("#id_goals").val().length>0){
         goals = $("#id_goals").val().split("|")
-        alert(goals)
         for(i=0;i<goals.length;i++){
-            $("#"+goals[i].replace(/\s/g,"_")+"_id").click()
+            $("#"+goals[i].replace(/\s/g,"_")).click()
         }
     }
 
@@ -41,7 +40,7 @@ function fnext(){
             if(selectedGoals.length>0)
                 selectedGoals += "|"
             selected += 1
-            selectedGoals += $("#"+goals[i].id).html()
+            selectedGoals += goals[i].id
         }
     }
     if(selected ==0){
@@ -53,13 +52,18 @@ function fnext(){
         return
     }
     $("#id_goals").val(selectedGoals)
+    $("#id_nextorderpage").val("order3")
+    $("#form1").submit()
+}
+function fback(){
+    $("#id_nextorderpage").val("order1")
     $("#form1").submit()
 }
 </script>
 
 <form method="post" id="form1">
     {% csrf_token %}
-    {% for field in form %}
+    {% for field in form.hidden_fields %}
         <!--{% if field.errors %}-->
             <!--{{ field.label }}-->
             <!--{{ field.errors }}-->
@@ -73,26 +77,27 @@ function fnext(){
     Select at most 5 goals
 </div>
 <div class="container-fluid" id="pid_div">
-    <a class="btn btn-outline-info" href="#" role="button" id="deep_condition_id">deep condition</a> &nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="replenish_hair_id">replenish hair</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="fix_split_ends_id">fix split ends</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="stengthen_id">stengthen</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="hydrate_id">hydrate</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="volumize_id">volumize</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="color_protection_id">color protection</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="thermal_protection_id">thermal protection</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="anti-aging_id">anti-aging</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="anti-frizz_id">anti-frizz</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="curl_definition_id">curl definition</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="shine_id">shine</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="staighten_id">staighten</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="nourish_roots_id">nourish roots</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="soothe_scalp_id">soothe scalp</a>&nbsp;&nbsp;
-    <a class="btn btn-outline-info" href="#" role="button" id="oil_control_id">oil control</a>
+    <a class="btn btn-outline-info" href="#" role="button" id="deep_condition">{% trans "deep condition" context "goals" %}</a> &nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="replenish_hair">{% trans "replenish hair" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="fix_split_ends">{% trans "fix split ends" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="strengthen">{% trans "strengthen" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="hydrate">{% trans "hydrate" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="volumize">{% trans "volumize" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="color_protection">{% trans "color protection" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="thermal_protection">{% trans "thermal protection" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="anti-aging">{% trans "anti-aging" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="anti-frizz">{% trans "anti-frizz" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="curl_definition">{% trans "curl definition" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="shine">{% trans "shine" context "goals" %}shine</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="straighten">{% trans "straighten" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="nourish_roots">{% trans "nourish roots" context "goals" %}</a>&nbsp;&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="soothe_scalp">{% trans "soothe scalp" context "goals" %}</a>&nbsp;
+    <a class="btn btn-outline-info" href="#" role="button" id="oil_control">{% trans "oil control" context "goals" %}</a>
 </div>
 
 <div align="center">
-    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">Continue</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fback()">{% trans "Previous"%}</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
 </div>
 
 

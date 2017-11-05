@@ -32,4 +32,5 @@ class OrderForm(forms.ModelForm):
             'fragrance_strength': forms.HiddenInput(),
             'shampoo_size': forms.HiddenInput(),
             'conditioner_size': forms.HiddenInput(),
+            'formula_name': forms.HiddenInput(),
         }

@@ -3,8 +3,7 @@ from django.template import loader
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
+from django.utils import translation
 from django.http import HttpResponse
 from django.http import Http404
 from .models import Order
@@ -29,10 +28,11 @@ def test(request):
     return render(request,"base.html")
 
 def home(request):
-
+    # print(translation.get_language_info(translation.get_language()).get("name"))
     return render(request,"home.html")
 
 def order1(request):
+    context = {}
     if request.method == "GET":
         form = OrderForm(initial={"create_user":User.objects.first(),"create_date":timezone.now(),"formula_name":User.objects.first()})
         return render(request,"orders/order1.html", {"form":form})
@@ -44,9 +44,25 @@ def order1(request):
         return detail(request,order.id)
         # return redirect("home")
     nextorderpage = form["nextorderpage"].value()
+    if nextorderpage == "order4":
+        context.update(getPricesInfo())
     print("Next page:", nextorderpage)
+    context.update({"form":form})
 
-    return render(request, "orders/"+nextorderpage+".html", {"form":form})
+    return render(request, "orders/"+nextorderpage+".html", context)
+
+def getPricesInfo():
+    priceCtx = {}
+    priceCtx["bottle_S"] = Order.SIZE_SETS[1][1]
+    priceCtx["bottle_L"] = Order.SIZE_SETS[2][1]
+    priceCtx["bottle_0"] = ""
+    priceCtx["price_SS"] = "80$"
+    priceCtx["price_LL"] = "110$"
+    priceCtx["price_SL"] = "90$"
+    priceCtx["price_LS"] = "90$"
+    priceCtx["price_L0"] = "60$"
+    priceCtx["price_0L"] = "60$"
+    return priceCtx
 
 def detail(request, id):
     try:

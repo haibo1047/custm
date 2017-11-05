@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<script type="text/javascript">
+function chooseV(ov,vtype){
+    $("#id_"+vtype).val(ov)
+}
+function init(){
+    if($("#id_shampoo_color").val().length >0){
+        $("#id_shampoo_color_list").find("div").each(function(){
+            if(this.title == $("#id_shampoo_color").val()){
+                this.click()
+            }
+        })
+    }
+    if($("#id_conditioner_color").val().length >0){
+        $("#id_conditioner_color_list").find("div").each(function(){
+            if(this.title == $("#id_conditioner_color").val()){
+                this.click()
+            }
+        })
+    }
+    if($("#id_fragrance").val().length >0){
+        $("#id_fragrance_list").find("button").each(function(){
+            if(this.value == $("#id_fragrance").val()){
+                this.click()
+            }
+        })
+    }
+    if($("#id_fragrance_strength").val().length >0){
+        $("#id_strength_list").find("button").each(function(){
+            if(this.value == $("#id_fragrance_strength").val()){
+                this.click()
+            }
+        })
+    }
+    if($("#id_formula_name").val().length >0){
+        $("#id_nameinbottle").val($("#id_formula_name").val())
+    }
+}
+$(function() {
+    $("#id_shampoo_color_list").find("div").bind(
+        {
+            click:function(){
+                $("#id_shampoo_color_list").find("div").removeClass("selected")
+                $("#"+this.id).addClass("selected")
+                chooseV($("#"+this.id).attr('title'),"shampoo_color")
+            }
+        }
+    );
+    $("#id_conditioner_color_list").find("div").bind(
+        "click",function(){
+            $("#id_conditioner_color_list").find("div").removeClass("selected");
+            $("#"+this.id).addClass("selected")
+            chooseV($("#"+this.id).attr('title'),"conditioner_color");
+        }
+    );
+    $("#id_fragrance_list").find("button").bind(
+        "click",function(){
+            $("#id_fragrance_list").find("button").removeClass("active  btn-border-1")
+            $("#"+this.id).addClass("active btn-border-1")
+            chooseV(this.value,"fragrance")
+        }
+    );
+    $("#id_strength_list").find("button").bind(
+        "click",function(){
+            $("#id_strength_list").find("button").removeClass("active  btn-border-1")
+            $("#"+this.id).addClass("active btn-border-1")
+            chooseV(this.value,"fragrance_strength")
+        }
+    );
+
+    init()
+
+});
+
+function fnext(){
+    if($("#id_shampoo_color").val().length==0 || $("#id_conditioner_color").val().length==0 ){
+        alert("please choose colors")
+        return;
+    }
+    if($("#id_fragrance").val().length==0  || $("#id_fragrance_strength").val().length==0 ){
+        alert("please choose fragrance")
+        return;
+    }
+    if($("#id_formula_name").val().length==0){
+        alert("please input formula name")
+        return;
+    }
+    $("#id_formula_name").val($("#id_nameinbottle").val())
+    $("#id_nextorderpage").val("order4")
+    $("#form1").submit()
+}
+
+
+function fback(){
+    $("#id_nextorderpage").val("order2")
+    $("#form1").submit()
+}
+</script>
+
+
+<form method="post" id="form1">
+    {% csrf_token %}
+    {% for field in form.hidden_fields %}
+        <!--{% if field.errors %}-->
+            <!--{{ field.label }}-->
+            <!--{{ field.errors }}-->
+        <!--{% endif %}-->
+        {{ field }}
+    {% endfor %}
+
+    <h5 class="heading"><sup>1&nbsp;</sup>{% trans "SHAMPOO COLOR"%}</h5>
+    <ul class="color_radio" id="id_shampoo_color_list">
+        <li><div id="shampoo_blue" class="unselected" title="1"></div></li>
+        <li><div id="shampoo_red" class="unselected" title="2"></div></li>
+        <li><div id="shampoo_orange" class="unselected" title="3"></div></li>
+        <li><div id="shampoo_green" class="unselected" title="3"></div></li>
+        <li><div id="shampoo_purple" class="unselected"  title="2"></div></li>
+        <li style="vertical-align: top;"><div id="shampoo_yellow" class="unselected" title="1"><p class="dyeFree">dye<br>free</p></div></li>
+    </ul>
+    <p id="shampoo_color_warning" style="color: #babbbf; margin-top: 0; margin-left:auto; margin-right:auto; max-width: 425px;"></p>
+
+    <h5 class="heading"><sup>2&nbsp;</sup>{% trans "CONDITIONER COLOR"%}</h5>
+    <ul class="color_radio" id="id_conditioner_color_list">
+        <li><div id="conditioner_blue" class="unselected" title="1"></div></li>
+        <li><div id="conditioner_red" class="unselected" title="2"></div></li>
+        <li><div id="conditioner_orange" class="unselected" title="3"></div></li>
+        <li><div id="conditioner_green" class="unselected" title="3"></div></li>
+        <li><div id="conditioner_purple" class="unselected" title="2"></div></li>
+        <li style="vertical-align: top;"><div id="conditioner_yellow" class="unselected" title="1"><p class="dyeFree">dye<br>free</p></div></li>
+    </ul>
+
+
+          <!--&lt;!&ndash;<img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="40" height="30"&ndash;&gt;-->
+               <!--&lt;!&ndash;class="img-fluid rounded-0" alt="Generic placeholder thumbnail">&ndash;&gt;-->
+
+    <div>
+        <h5 class="heading"><sup>3&nbsp;</sup>{% trans "Fragrance"%}</h5>
+    </div>
+
+      <div id="id_fragrance_list">
+    <button type="button" class="btn btn-outline-primary" id="f_1" value="1">{% trans "all(you)ealyptus" context "fragrance" %}</button>
+    <button type="button" class="btn btn-outline-primary" id="f_2" value="2">{% trans "hibis(kiss)" context "fragrance" %}</button>
+    <button type="button" class="btn btn-outline-primary" id="f_3" value="3">{% trans "musk-have" context "fragrance" %}</button>
+    <button type="button" class="btn btn-outline-primary" id="f_4" value="4">{% trans "peony tail" context "fragrance" %}</button>
+    <button type="button" class="btn btn-outline-primary" id="f_5" value="5">{% trans "feeling (f)ineapple" context "fragrance" %}</button>
+      </div>
+
+    <div>
+        <h5 class="heading"><sup>4&nbsp;</sup>{% trans "Fragrance Strength"%}</h5>
+    </div>
+
+      <div id="id_strength_list">
+    <button type="button" class="btn btn-outline-success" id="s_1" value="1">{% trans "Light" context "fragrance strength" %}</button>
+    <button type="button" class="btn btn-outline-success" id="s_2" value="2">{% trans "Medium" context "fragrance strength" %}</button>
+    <button type="button" class="btn btn-outline-success" id="s_3" value="3">{% trans "Strong" context "fragrance strength" %}</button>
+      </div>
+
+    <div>
+        {% trans "Formula name(printed in bottle)"%}:
+        <input class="form-control" type="text" name="nameinbottle" id="id_nameinbottle" placeholder="Default input">
+    </div>
+
+
+
+</form>
+
+<div align="center">
+    <button type="button" class="btn btn-primary btn-lg" onclick="fback()">{% trans "Previous"%}</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
+</div>
+
+
+{% endblock %}

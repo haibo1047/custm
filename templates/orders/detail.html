@@ -14,15 +14,43 @@
     </tr>
     <tr>
       <th scope="row">hair type</th>
-      <td>{{order.hair_type}}</td>
+      <td>{{order.getHairType}}</td>
     </tr>
     <tr>
       <th scope="row">hair structure</th>
-      <td>{{order.hair_structure}}</td>
+      <td>{{order.getHairStructure}}</td>
     </tr>
     <tr>
       <th scope="row">Scalp Moisture</th>
-      <td>{{order.scalp_moisture}}</td>
+      <td>{{order.getScalpMoisture}}</td>
+    </tr>
+    <tr>
+      <th scope="row">goals</th>
+      <td>{{order.getGoals}}</td>
+    </tr>
+    <tr>
+      <th scope="row">fragrance</th>
+      <td>{{order.getFragrance}}</td>
+    </tr>
+    <tr>
+      <th scope="row">fragrance_strength</th>
+      <td>{{order.getFragranceStrength | safe}}</td>
+    </tr>
+    <tr>
+      <th scope="row">shampoo_color</th>
+      <td>{{order.getShampooColor}}</td>
+    </tr>
+    <tr>
+      <th scope="row">shampoo_size</th>
+      <td>{{order.getSampooSize}}</td>
+    </tr>
+    <tr>
+      <th scope="row">conditioner_size</th>
+      <td>{{order.getConditionerSize}}</td>
+    </tr>
+    <tr>
+      <th scope="row">formula_name</th>
+      <td>{{order.formula_name}}</td>
     </tr>
     <tr>
       <th scope="row">create user</th>
@@ -33,7 +61,7 @@
       <td>{{order.create_date}}</td>
     </tr>
   </tbody>
-    </table>
+</table>
     {% endif %}
 
 

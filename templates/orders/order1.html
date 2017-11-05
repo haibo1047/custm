@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% load staticfiles %}
 
@@ -44,6 +45,7 @@
         $("#id_hair_type").val(hair_type_sid.substring(3))
         $("#id_hair_structure").val(hair_structure_sid.substring(3))
         $("#id_scalp_moisture").val(scalp_moisture_sid.substring(3))
+        $("#id_nextorderpage").val("order2")
         $("#form1").submit()
     }
 
@@ -63,7 +65,7 @@ $(function() {
 
 <form method="post" id="form1">
     {% csrf_token %}
-    {% for field in form %}
+    {% for field in form.hidden_fields %}
         {{ field }}
     {% endfor %}
 
@@ -72,43 +74,43 @@ $(function() {
 <table class="table">
   <thead>
     <tr>
-      <th colspan="12" align="center">Build your hair profile</th>
+      <th colspan="12" align="center">{% trans "Build your hair profile"%}</th>
     </tr>
   </thead>
     <tbody>
     <tr>
-        <td colspan="12" align="center">hair type</td>
+        <td colspan="12" align="center">{% trans "hair type"%}</td>
     </tr>
     <tr>
       <td colspan="3" align="center">
           <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_1">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">straight</p>
+                    <p class="card-text">{% trans "straight" context "hair type" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="3" align="center">
             <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_2">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">wavy</p>
+                    <p class="card-text">{% trans "wavy" context "hair type" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="3" align="center">
             <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_3">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">curly</p>
+                    <p class="card-text">{% trans "curly" context "hair type" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="3" align="center">
             <div class="card" style="width: 8rem;" onclick="setHairType(this.id)" id="ht_4">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">coily</p>
+                    <p class="card-text">{% trans "coily" context "hair type" %}</p>
                 </div>
             </div>
       </td>
@@ -119,25 +121,25 @@ $(function() {
     <tr>
       <td colspan="4" align="center">
           <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_1">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">fine</p>
+                    <p class="card-text">{% trans "fine" context "hair structure" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="4" align="center">
             <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_2">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">medium</p>
+                    <p class="card-text">{% trans "medium" context "hair structure" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="4" align="center">
             <div class="card" style="width: 8rem;" onclick="setHairStructure(this.id)" id="hs_3">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">coarse</p>
+                    <p class="card-text">{% trans "coarse" context "hair structure" %}</p>
                 </div>
             </div>
       </td>
@@ -148,25 +150,25 @@ $(function() {
     <tr>
       <td colspan="4" align="center">
           <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_1">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">dry</p>
+                    <p class="card-text">{% trans "dry" context "scalp moisture" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="4" align="center">
             <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_2">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">normal</p>
+                    <p class="card-text">{% trans "normal" context "scalp moisture" %}</p>
                 </div>
             </div>
       </td>
       <td colspan="4" align="center">
             <div class="card" style="width: 8rem;" onclick="setScalpMoisture(this.id)" id="sm_3">
-                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/timg.jpg' %}" >
                 <div class="card-body">
-                    <p class="card-text">oil</p>
+                    <p class="card-text">{% trans "oily" context "scalp moisture" %}</p>
                 </div>
             </div>
       </td>
@@ -176,7 +178,7 @@ $(function() {
 
 
 <div align="center">
-    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">Continue</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
 </div>
 
 

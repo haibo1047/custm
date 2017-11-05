@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<script type="text/javascript">
+$(function() {
+    $("#id_choose_size").find("li").bind(
+        {
+            click:function(){
+                $("#id_choose_size").find("li").removeClass("selected")
+                $("#"+this.id).addClass("selected")
+                chooseV($("#"+this.id).attr('title'))
+            }
+        }
+    );
+    init()
+});
+function init(){
+    if($("#id_shampoo_size").val().length >0){
+        cs = $("#id_shampoo_size").val() + $("#id_conditioner_size").val()
+        $("#id_choose_size").find("li").each(function(){
+            if(this.title == cs){
+                this.click()
+            }
+        })
+    }
+}
+
+function chooseV(cs){
+    $("#id_shampoo_size").val(cs.substring(0,1))
+    $("#id_conditioner_size").val(cs.substring(1,2))
+}
+
+function fnext(){
+    if($("#id_shampoo_size").val().length==0 || $("#id_conditioner_size").val().length==0){
+        alert("please choose size")
+        return;
+    }
+    $("#form1").submit()
+}
+
+
+function fback(){
+    $("#id_nextorderpage").val("order3")
+    $("#form1").submit()
+}
+</script>
+
+<form method="post" id="form1">
+    {% csrf_token %}
+    {% for field in form.hidden_fields %}
+        <!--{% if field.errors %}-->
+            <!--{{ field.label }}-->
+            <!--{{ field.errors }}-->
+        <!--{% endif %}-->
+        {{ field }}
+    {% endfor %}
+
+</form>
+
+
+<div id="main">
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center order">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			<p class="progress green">{% trans "HAIR QUIZ"%} <sup>4/4</sup></p>
+			<h1 class="order">{% trans "Choose a size"%}</h1>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+			<h5 class="heading"><sup>1&nbsp;</sup>{% trans "SIZE"%}</h5>
+			<ul class="set_size" id="id_choose_size">
+				<li id="small" title="11">
+					<label id="small_label" for="small">{{bottle_S}} {% trans "Shampoo"%}<br>{{bottle_S}} {% trans "Conditioner"%}<br><span class="number">{{price_SS}}</span></label>
+					<img id="small_thumbnail" class="small_set" src="{% static 'images/small.svg' %}" alt="Small Set"/>
+				</li>
+				<li id="large" title="77">
+					<label id="large_label" for="large">{{bottle_L}} {% trans "Shampoo"%}<br>{{bottle_L}} {% trans "Conditioner"%}<br><span class="number">{{price_LL}}</span></label>
+					<img id="large_thumbnail" class="large_set" src="{% static 'images/large.svg' %}" alt="Large Set" />
+				</li>
+				<div class="shelf_divider"></div>
+				<li id="small_large" title="17">
+					<label id="small_large_label" for="small_large">{{bottle_S}} {% trans "Shampoo"%}<br>{{bottle_L}} {% trans "Conditioner"%}<br><span class="number">{{price_SL}}</span></label>
+					<img id="small_large_thumbnail" class="large_set" src="{% static 'images/small_large.svg' %}" alt="8 oz Shampoo and 16 oz Conditioner" />
+				</li>
+				<li id="large_small" title="71">
+					<label id="large_small_label" for="large_small">{{bottle_L}} {% trans "Shampoo"%}<br>{{bottle_S}} {% trans "Conditioner"%}<br><span class="number">{{price_LS}}</span></label>
+					<img id="large_small_thumbnail" class="large_set" src="{% static 'images/large_small.svg' %}" alt="8 oz Shampoo and 16 oz Conditioner"/>
+				</li>
+				<div class="shelf_divider"></div>
+				<li id="large_shampoo" title="70">
+					<label id="large_shampoo_label" for="large_small">{{bottle_L}} {% trans "Shampoo"%}<br><span class="number">{{price_L0}}</span></label>
+					<img id="large_shampoo_thumbnail" class="large_set" src="{% static 'images/large_shampoo.svg' %}" alt="Large Shampoo" />
+				</li>
+				<li id="large_conditioner" title="07">
+					<label id="large_conditioner_label" for="large_small">{{bottle_L}} {% trans "Conditioner"%}<br><span class="number">{{price_0L}}</span></label>
+					<img id="large_conditioner_thumbnail" class="large_set" src="{% static 'images/large_conditioner.svg' %}" alt="Large Conditioner" />
+				</li>
+				<div class="shelf_divider"></div>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div align="center">
+    <button type="button" class="btn btn-primary btn-lg" onclick="fback()">{% trans "Previous"%}</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
+</div>
+
+
+
+{% endblock %}
