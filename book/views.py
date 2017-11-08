@@ -33,8 +33,9 @@ def home(request):
 
 def order1(request):
     context = {}
+    print(request.user)
     if request.method == "GET":
-        form = OrderForm(initial={"create_user":User.objects.first(),"create_date":timezone.now(),"formula_name":User.objects.first()})
+        form = OrderForm(initial={"create_user":request.user,"create_date":timezone.now(),"formula_name":request.user})
         return render(request,"orders/order1.html", {"form":form})
 
     form = OrderForm(request.POST)

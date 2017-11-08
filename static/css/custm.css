@@ -10,6 +10,10 @@ html, body {
   color: #787887;
 }
 
+.bg-selected {
+  background-color: #97D3C7 !important;
+}
+
 a, img {
     border:none;
     outline:none;

@@ -1,0 +1,22 @@
+<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="268.7 -3.6 598.2 598.2" enable-background="new 268.7 -3.6 598.2 598.2" xml:space="preserve">
+<ellipse class="unselected" id="dry_image" fill="#787887" cx="567.8" cy="295.5" rx="263.8" ry="264"/>
+<g>
+    <g>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="387.8" y1="333.1" x2="479.1" y2="333.1"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="522.1" y1="333.1" x2="613.5" y2="333.1"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="656.5" y1="333.1" x2="747.8" y2="333.1"/>
+    </g>
+    <g>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="387.8" y1="295.5" x2="479.1" y2="295.5"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="522.1" y1="295.5" x2="613.5" y2="295.5"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="656.5" y1="295.5" x2="747.8" y2="295.5"/>
+    </g>
+    <g>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="387.8" y1="257.9" x2="479.1" y2="257.9"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="522.1" y1="257.9" x2="613.5" y2="257.9"/>
+        <line fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" x1="656.5" y1="257.9" x2="747.8" y2="257.9"/>
+    </g>
+</g>
+<circle class="unselected" id="dry_outline" fill="none" stroke="#787887" stroke-width="4" stroke-miterlimit="10" cx="567.8" cy="295.5" r="297.1"/>
+</svg>

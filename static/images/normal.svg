@@ -1,0 +1,10 @@
+<svg  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="268.7 -3.6 598.2 598.2" enable-background="new 268.7 -3.6 598.2 598.2" xml:space="preserve">
+<ellipse class="unselected" id="normal_image" fill="#787887" cx="567.8" cy="295.5" rx="263.8" ry="264"/>
+<g>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" cx="424.9" cy="295.5" r="37.1"/>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" cx="567.8" cy="295.5" r="37.1"/>
+    <circle fill="none" stroke="#FFFFFF" stroke-width="6" stroke-miterlimit="10" cx="710.7" cy="295.5" r="37.1"/>
+</g>
+<circle class="unselected" id="normal_outline" fill="none" stroke="#787887" stroke-width="4" stroke-miterlimit="10" cx="567.8" cy="295.5" r="297.1"/>
+</svg>
