@@ -57,15 +57,15 @@ class Order(models.Model):
     create_date = models.DateTimeField("create_date")
     create_user = models.CharField("create_user",max_length=100,default="anoymous")
 
-    hair_type = models.IntegerField("hair_type", choices= HAIR_TYPE_SETS)
+    hair_type = models.IntegerField("hair_type", choices= HAIR_TYPE_SETS,null=True)
     def getHairType(self):
         return convertTupleToDict(self.HAIR_TYPE_SETS).get(self.hair_type)
 
-    hair_structure = models.IntegerField("hair_structure", choices= HAIR_STRUCTURE_SETS)
+    hair_structure = models.IntegerField("hair_structure", choices= HAIR_STRUCTURE_SETS,null=True)
     def getHairStructure(self):
         return convertTupleToDict(self.HAIR_STRUCTURE_SETS).get(self.hair_structure)
 
-    scalp_moisture = models.IntegerField("scale_moisture", choices= SCALP_MOISTURE_SETS)
+    scalp_moisture = models.IntegerField("scale_moisture", choices= SCALP_MOISTURE_SETS,null=True)
     def getScalpMoisture(self):
         return convertTupleToDict(self.SCALP_MOISTURE_SETS).get(self.scalp_moisture)
 
@@ -78,27 +78,27 @@ class Order(models.Model):
             thegoals += pgettext_lazy("goals", g.replace("_"," "))+""
         return thegoals
 
-    shampoo_color = models.IntegerField("shampoo_color",choices=COLOR_SETS)
+    shampoo_color = models.IntegerField("shampoo_color",choices=COLOR_SETS,null=True)
     def getShampooColor(self):
         return convertTupleToDict(self.COLOR_SETS).get(self.shampoo_color)
 
-    conditioner_color = models.IntegerField("conditioner_color",choices=COLOR_SETS)
+    conditioner_color = models.IntegerField("conditioner_color",choices=COLOR_SETS,null=True)
     def getConditionerColor(self):
         return convertTupleToDict(self.COLOR_SETS).get(self.conditioner_size)
 
-    fragrance = models.IntegerField("fragrance",choices=FRAGRANCE_SETS)
+    fragrance = models.IntegerField("fragrance",choices=FRAGRANCE_SETS,null=True)
     def getFragrance(self):
         return convertTupleToDict(self.FRAGRANCE_SETS).get(self.fragrance)
 
-    fragrance_strength = models.IntegerField("frangrance_strength",choices=FRAGRANCE_STRENGTH_SETS)
+    fragrance_strength = models.IntegerField("frangrance_strength",choices=FRAGRANCE_STRENGTH_SETS,null=True)
     def getFragranceStrength(self):
         return convertTupleToDict(self.FRAGRANCE_STRENGTH_SETS).get(self.fragrance_strength)
 
-    shampoo_size = models.IntegerField("shampoo_size",choices=SIZE_SETS)
+    shampoo_size = models.IntegerField("shampoo_size",choices=SIZE_SETS,null=True)
     def getSampooSize(self):
         return convertTupleToDict(self.SIZE_SETS).get(self.shampoo_size)
 
-    conditioner_size = models.IntegerField("conditioner_size",choices=SIZE_SETS)
+    conditioner_size = models.IntegerField("conditioner_size",choices=SIZE_SETS,null=True)
     def getConditionerSize(self):
         return convertTupleToDict(self.SIZE_SETS).get(self.conditioner_size)
 
