@@ -1,5 +1,4 @@
 
-
 def convertTupleToDict(tp):
     d = {}
     for e in tp:

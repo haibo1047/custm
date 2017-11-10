@@ -33,17 +33,11 @@ def home(request):
 
 def order1(request):
     context = {}
-    print(request.user)
     if request.method == "GET":
         form = OrderForm(initial={"create_user":request.user,"create_date":timezone.now(),"formula_name":request.user})
         return render(request,"orders/order1.html", {"form":form})
 
     form = OrderForm(request.POST)
-    if form.is_valid() :
-        print(form.cleaned_data)
-        order = form.save(commit=True)
-        return detail(request,order.id)
-        # return redirect("home")
     nextorderpage = form["nextorderpage"].value()
     if nextorderpage == "order4":
         context.update(getPricesInfo())
@@ -51,6 +45,26 @@ def order1(request):
     context.update({"form":form})
 
     return render(request, "orders/"+nextorderpage+".html", context)
+
+@login_required
+def saveOrder(request):
+    myOrders = findMyOrders(request.user)
+    if not (myOrders is None or len(myOrders) ==1) :
+        return errorpage(request,"in current stage, can only book 1 order")
+    form = OrderForm(request.POST)
+    if not form.is_valid():
+        return errorpage(request,form.errors)
+    print(form.cleaned_data)
+    order = form.save(commit=True)
+    return detail(request, order.id)
+
+def findMyOrders(user):
+    myOrders = Order.objects.filter(create_user = user)
+    print(myOrders)
+    return myOrders
+
+def errorpage(request, errormsg):
+    return render(request, "errorpage.html", {"errormsg":errormsg})
 
 def getPricesInfo():
     priceCtx = {}
