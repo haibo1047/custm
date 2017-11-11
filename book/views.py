@@ -49,7 +49,8 @@ def order1(request):
 @login_required
 def saveOrder(request):
     myOrders = findMyOrders(request.user)
-    if not (myOrders is None or len(myOrders) ==1) :
+    print(len(myOrders))
+    if len(myOrders) >= 1 :
         return errorpage(request,"in current stage, can only book 1 order")
     form = OrderForm(request.POST)
     if not form.is_valid():
