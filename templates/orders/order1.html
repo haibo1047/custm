@@ -81,7 +81,7 @@ $(function() {
         <td colspan="12" align="center">{% trans "hair type"%}</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
+      <td colspan="4" align="center">
           <div class="card" style="width: 9rem;" onclick="setHairType(this.id)" id="ht_1">
                 <img class="card-img-top" src="{% static 'images/straight.svg' %}" >
                 <div class="card-body">
@@ -89,7 +89,7 @@ $(function() {
                 </div>
             </div>
       </td>
-      <td colspan="3" align="center">
+      <td colspan="4" align="center">
             <div class="card" style="width: 9rem;" onclick="setHairType(this.id)" id="ht_2">
                 <img class="card-img-top" src="{% static 'images/wavy.svg' %}" >
                 <div class="card-body">
@@ -97,16 +97,8 @@ $(function() {
                 </div>
             </div>
       </td>
-      <td colspan="3" align="center">
+      <td colspan="4" align="center">
             <div class="card" style="width: 9rem;" onclick="setHairType(this.id)" id="ht_3">
-                <img class="card-img-top" src="{% static 'images/curly.svg' %}" >
-                <div class="card-body">
-                    <p class="card-text">{% trans "curly" context "hair type" %}</p>
-                </div>
-            </div>
-      </td>
-      <td colspan="3" align="center">
-            <div class="card" style="width: 9rem;" onclick="setHairType(this.id)" id="ht_4">
                 <img class="card-img-top" src="{% static 'images/coily.svg' %}" >
                 <div class="card-body">
                     <p class="card-text">{% trans "coily" context "hair type" %}</p>
