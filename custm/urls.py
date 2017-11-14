@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^$', bookviews.home, name= 'home'),
     url(r'^orders/order1$', bookviews.order1, name='order1'),
     url(r'^orders/saveOrder$', bookviews.saveOrder, name='saveOrder'),
+    url(r'^order/delete/(?P<id>[0-9]+)/$', bookviews.delete, name='deleteorder'),
     url(r'^order/(?P<id>[0-9]+)/$', bookviews.detail, name='orderdetail'),
     url(r'^orders/$', bookviews.orderlist, name='orderlist'),
     url(r'^search/(?P<search>.+)/$', bookviews.search, name='search'),

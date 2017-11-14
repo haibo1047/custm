@@ -47,8 +47,8 @@ function fnext(){
         alert("please choose at least 1 goal")
         return
     }
-    if(selected >5){
-        alert("you chose more than 5 goals")
+    if(selected >3){
+        alert("you chose more than 3 goals")
         return
     }
     $("#id_goals").val(selectedGoals)
@@ -74,7 +74,7 @@ function fback(){
 </form>
 
 <div>
-    Select at most 5 goals
+    Select at most 3 goals
 </div>
 <div class="container-fluid" id="pid_div">
     <a class="btn btn-outline-info" href="#" role="button" id="deep_condition">{% trans "deep condition" context "goals" %}</a> &nbsp;&nbsp;

@@ -16,9 +16,10 @@ from .utils import *
 #     model = Order
 #     template_name = "orders/detail.html"
 
+
 @login_required
 def orderlist(request):
-    orders = Order.objects.filter(create_date__lte=timezone.now()).order_by("id")
+    orders = findMyOrders(request.user)
     # output = "|".join([ str(eo.id)+eo.color for eo in orders])
     template = loader.get_template("orders/list.html")
     context = {"order_list":orders}
@@ -29,6 +30,7 @@ def test(request):
 
 def home(request):
     # print(translation.get_language_info(translation.get_language()).get("name"))
+    print(request.user.is_superuser)
     return render(request,"home.html")
 
 def order1(request):
@@ -50,7 +52,7 @@ def order1(request):
 def saveOrder(request):
     myOrders = findMyOrders(request.user)
     print(len(myOrders))
-    if len(myOrders) >= 1 :
+    if not(request.user.is_superuser) and len(myOrders) >= 1 :
         return errorpage(request,"in current stage, can only book 1 order")
     form = OrderForm(request.POST)
     if not form.is_valid():
@@ -60,7 +62,11 @@ def saveOrder(request):
     return detail(request, order.id)
 
 def findMyOrders(user):
-    myOrders = Order.objects.filter(create_user = user)
+    if user.is_superuser :
+        print("orders from super user ")
+        myOrders = Order.objects.all().order_by("id")
+    else:
+        myOrders = Order.objects.filter(create_user = user).order_by("id")
     print(myOrders)
     return myOrders
 
@@ -87,6 +93,11 @@ def detail(request, id):
         raise Http404("didn't find the Order")
     context = {"order":order}
     return render(request,"orders/detail.html",context)
+
+def delete(request, id):
+    print(id)
+    order = Order.objects.get(pk=id).delete()
+    return orderlist(request)
 
 def search(request, search):
     orders = get_list_or_404(Order,hair_type = search)
