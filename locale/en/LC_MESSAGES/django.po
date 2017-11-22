@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-05 10:21+0800\n"
+"POT-Creation-Date: 2017-11-22 21:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,52 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: book/models.py:16 templates/orders/order1.html:89
+#: book/models.py:16 templates/orders/order1.html:88
 msgctxt "hair type"
 msgid "straight"
 msgstr ""
 
-#: book/models.py:17 templates/orders/order1.html:97
+#: book/models.py:17 templates/orders/order1.html:96
 msgctxt "hair type"
 msgid "wavy"
 msgstr ""
 
-#: book/models.py:18 templates/orders/order1.html:105
+#: book/models.py:18
 msgctxt "hair type"
 msgid "curly"
 msgstr ""
 
-#: book/models.py:19 templates/orders/order1.html:113
+#: book/models.py:19 templates/orders/order1.html:104
 msgctxt "hair type"
 msgid "coily"
 msgstr ""
 
-#: book/models.py:22 templates/orders/order1.html:126
+#: book/models.py:22 templates/orders/order1.html:117
 msgctxt "hair structure"
 msgid "fine"
 msgstr ""
 
-#: book/models.py:23 templates/orders/order1.html:134
+#: book/models.py:23 templates/orders/order1.html:125
 msgctxt "hair structure"
 msgid "medium"
 msgstr ""
 
-#: book/models.py:24 templates/orders/order1.html:142
+#: book/models.py:24 templates/orders/order1.html:133
 msgctxt "hair structure"
 msgid "coarse"
 msgstr ""
 
-#: book/models.py:27 templates/orders/order1.html:155
+#: book/models.py:27 templates/orders/order1.html:146
 msgctxt "scalp moisture"
 msgid "dry"
 msgstr ""
 
-#: book/models.py:28 templates/orders/order1.html:163
+#: book/models.py:28 templates/orders/order1.html:154
 msgctxt "scalp moisture"
 msgid "normal"
 msgstr ""
 
-#: book/models.py:29 templates/orders/order1.html:171
+#: book/models.py:29 templates/orders/order1.html:162
 msgctxt "scalp moisture"
 msgid "oily"
 msgstr ""
@@ -137,6 +137,30 @@ msgctxt "fragrance strength"
 msgid "Strong"
 msgstr ""
 
+#: templates/admin/base.html:30
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:35
+msgid "View site"
+msgstr ""
+
+#: templates/admin/base.html:40
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:44
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/base.html:46 templates/base.html:53
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/base.html:56
+msgid "Home"
+msgstr ""
+
 #: templates/admin/base_site.html:3
 msgid "Django site admin"
 msgstr ""
@@ -145,19 +169,32 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: templates/base.html:43
-msgid "Cupit Love"
-msgstr "Cupit's Love"
+#: templates/base.html:42
+msgid "Cupid Love"
+msgstr "Cupid's Love"
 
-#: templates/orders/order1.html:77
+#: templates/base.html:57 templates/registration/login.html:4
+#: templates/registration/login.html:10
+msgid "Log in"
+msgstr ""
+
+#: templates/base.html:62
+msgid "Customize"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Orders"
+msgstr ""
+
+#: templates/orders/order1.html:76
 msgid "Build your hair profile"
 msgstr ""
 
-#: templates/orders/order1.html:82
+#: templates/orders/order1.html:81
 msgid "hair type"
 msgstr ""
 
-#: templates/orders/order1.html:181 templates/orders/order2.html:100
+#: templates/orders/order1.html:172 templates/orders/order2.html:100
 #: templates/orders/order3.html:175 templates/orders/order4.html:109
 msgid "Continue"
 msgstr ""
@@ -309,4 +346,20 @@ msgstr ""
 #: templates/orders/order4.html:85 templates/orders/order4.html:89
 #: templates/orders/order4.html:98
 msgid "Conditioner"
+msgstr ""
+
+#: templates/registration/login.html:14
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/registration/login.html:14
+msgid "Reset it"
+msgstr ""
+
+#: templates/registration/login.html:15
+msgid "Not a member?"
+msgstr ""
+
+#: templates/registration/login.html:15
+msgid "Register"
 msgstr ""

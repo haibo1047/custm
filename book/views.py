@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,get_list_or_404,redirect
 from django.template import loader
 from django.views import generic
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 
 from django.utils import translation
 from django.http import HttpResponse
@@ -11,6 +11,10 @@ from django.utils import timezone
 from .forms import OrderForm
 from django.contrib.auth.models import User
 from .utils import *
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
+
+from django.conf import settings
 
 # class DetailView(generic.DetailView):
 #     model = Order
@@ -26,13 +30,19 @@ def orderlist(request):
     return HttpResponse(template.render(context,request))
 
 def test(request):
+    # send_mail("ilovecupid-account registration","thanks for your registration", None, ("haibo1047@163.com",))
     return render(request,"base.html")
 
 def home(request):
+    context = {}
     # print(translation.get_language_info(translation.get_language()).get("name"))
-    print(request.user.is_superuser)
-    return render(request,"home.html")
+    # print(request.user.is_superuser)
+    print(get_current_site(request))
+    context['settingkeys'] = dir(settings)
+    context['st'] = settings
+    return render(request,"home.html",context)
 
+@login_required
 def order1(request):
     context = {}
     if request.method == "GET":
@@ -94,6 +104,7 @@ def detail(request, id):
     context = {"order":order}
     return render(request,"orders/detail.html",context)
 
+@permission_required('order.can_delete',raise_exception=True)
 def delete(request, id):
     print(id)
     order = Order.objects.get(pk=id).delete()

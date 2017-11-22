@@ -30,17 +30,30 @@ ALLOWED_HOSTS = ['*']
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 900
 
+
+
+
+# Email Settings
+EMAIL_HOST = "mail.ilovecupid.cn"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "cupid"
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = "cupid@ilovecupid.cn"
+
 # Application definition
 
 INSTALLED_APPS = [
-    'book.apps.BookConfig',
-    'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
+    'book.apps.BookConfig',
 ]
 
 
