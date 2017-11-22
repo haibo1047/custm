@@ -21,4 +21,4 @@ class OrderAdmin(admin.ModelAdmin):
             obj.create_user = request.user
         super().save_model(request, obj, form, change)
 
-admin.site.register(Order,OrderAdmin)
+# admin.site.register(Order,OrderAdmin)
