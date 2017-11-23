@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
+{% load staticfiles %}
 
 {% block content %}
 
@@ -13,51 +15,51 @@
       <td>{{order.id}}</td>
     </tr>
     <tr>
-      <th scope="row">hair type</th>
+      <th scope="row">{% trans "HairType"%}</th>
       <td>{{order.getHairType}}</td>
     </tr>
     <tr>
-      <th scope="row">hair structure</th>
+      <th scope="row">{% trans "HairStructure"%}</th>
       <td>{{order.getHairStructure}}</td>
     </tr>
     <tr>
-      <th scope="row">Scalp Moisture</th>
+      <th scope="row">{% trans "ScalpMoisture"%}</th>
       <td>{{order.getScalpMoisture}}</td>
     </tr>
     <tr>
-      <th scope="row">goals</th>
+      <th scope="row">{% trans "Goals"%}</th>
       <td>{{order.getGoals}}</td>
     </tr>
     <tr>
-      <th scope="row">fragrance</th>
+      <th scope="row">{% trans "Fragrance"%}</th>
       <td>{{order.getFragrance}}</td>
     </tr>
     <tr>
-      <th scope="row">fragrance_strength</th>
+      <th scope="row">{% trans "FragranceStrength"%}</th>
       <td>{{order.getFragranceStrength | safe}}</td>
     </tr>
     <tr>
-      <th scope="row">shampoo_color</th>
+      <th scope="row">{% trans "ShampooColor"%}</th>
       <td>{{order.getShampooColor}}</td>
     </tr>
     <tr>
-      <th scope="row">shampoo_size</th>
+      <th scope="row">{% trans "ShampooSize"%}</th>
       <td>{{order.getSampooSize}}</td>
     </tr>
     <tr>
-      <th scope="row">conditioner_size</th>
+      <th scope="row">{% trans "ConditionerSize"%}</th>
       <td>{{order.getConditionerSize}}</td>
     </tr>
     <tr>
-      <th scope="row">formula_name</th>
+      <th scope="row">{% trans "FormulaName"%}</th>
       <td>{{order.formula_name}}</td>
     </tr>
     <tr>
-      <th scope="row">create user</th>
+      <th scope="row">{% trans "CreateUser"%}</th>
       <td>{{order.create_user}}</td>
     </tr>
     <tr>
-      <th scope="row">create date</th>
+      <th scope="row">{% trans "CreateDate"%}</th>
       <td>{{order.create_date}}</td>
     </tr>
   </tbody>

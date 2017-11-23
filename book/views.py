@@ -3,6 +3,7 @@ from django.template import loader
 from django.views import generic
 from django.contrib.auth.decorators import login_required,permission_required
 
+import csv
 from django.utils import translation
 from django.http import HttpResponse
 from django.http import Http404
@@ -15,6 +16,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 
 from django.conf import settings
+
+from django.utils.translation import ugettext as _
 
 # class DetailView(generic.DetailView):
 #     model = Order
@@ -29,9 +32,59 @@ def orderlist(request):
     context = {"order_list":orders}
     return HttpResponse(template.render(context,request))
 
+
+@login_required
+def downloadOrders(request):
+    orders = findMyOrders(request.user)
+    # output = "|".join([ str(eo.id)+eo.color for eo in orders])
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="orders.csv"'
+    writer = csv.writer(response)
+    writer.writerow([
+        "ID",
+        _("HairType"),
+        _("HairStructure"),
+        _("ScalpMoisture"),
+        _("Goals"),
+        _("ShampooColor"),
+        _("ConditionerColor"),
+        _("Fragrance"),
+        _("FragranceStrength"),
+        _("ShampooSize"),
+        _("ConditionerSize"),
+        _("FormulaName"),
+        _("CreateUser"),
+        _("CreateDate")
+    ])
+    for oe in orders:
+        writer.writerow([
+            oe.id,
+            oe.getHairType(),
+            oe.getHairStructure(),
+            oe.getScalpMoisture(),
+            oe.getGoals(),
+            oe.getShampooColor(),
+            oe.getConditionerColor(),
+            oe.getFragrance(),
+            oe.getFragranceStrength(),
+            oe.getSampooSize(),
+            oe.getConditionerSize(),
+            oe.formula_name,
+            oe.create_user,
+            oe.create_date
+        ])
+    return response
+
+
 def test(request):
     # send_mail("ilovecupid-account registration","thanks for your registration", None, ("haibo1047@163.com",))
-    return render(request,"base.html")
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
+    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+    return response
+    # return render(request,"base.html")
 
 def home(request):
     context = {}

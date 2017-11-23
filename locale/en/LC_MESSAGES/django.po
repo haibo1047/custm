@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
 #: book/models.py:16 templates/orders/order1.html:88
 msgctxt "hair type"
 msgid "straight"
@@ -137,6 +138,67 @@ msgctxt "fragrance strength"
 msgid "Strong"
 msgstr ""
 
+#: book/views.py:45 templates/orders/detail.html:16
+#: templates/orders/order1.html:81
+msgid "HairType"
+msgstr ""
+
+#: book/views.py:46 templates/orders/detail.html:20
+#: templates/orders/order1.html:110
+msgid "HairStructure"
+msgstr ""
+
+#: book/views.py:47 templates/orders/detail.html:24
+#: templates/orders/order1.html:139
+msgid "ScalpMoisture"
+msgstr ""
+
+#: book/views.py:48 templates/orders/detail.html:28
+#: templates/orders/list.html:22
+msgid "Goals"
+msgstr ""
+
+#: book/views.py:49 templates/orders/detail.html:40
+#: templates/orders/order3.html:117
+msgid "ShampooColor"
+msgstr ""
+
+#: book/views.py:50 templates/orders/order3.html:128
+msgid "ConditionerColor"
+msgstr ""
+
+#: book/views.py:51 templates/orders/detail.html:32
+#: templates/orders/order3.html:143
+msgid "Fragrance"
+msgstr ""
+
+#: book/views.py:52 templates/orders/detail.html:36
+#: templates/orders/order3.html:155
+msgid "FragranceStrength"
+msgstr ""
+
+#: book/views.py:53 templates/orders/detail.html:44
+msgid "ShampooSize"
+msgstr ""
+
+#: book/views.py:54 templates/orders/detail.html:48
+msgid "ConditionerSize"
+msgstr ""
+
+#: book/views.py:55 templates/orders/detail.html:52
+msgid "FormulaName"
+msgstr ""
+
+#: book/views.py:56 templates/orders/detail.html:56
+#: templates/orders/list.html:21
+msgid "CreateUser"
+msgstr ""
+
+#: book/views.py:57 templates/orders/detail.html:60
+#: templates/orders/list.html:23
+msgid "CreateDate"
+msgstr ""
+
 #: templates/admin/base.html:30
 msgid "Welcome,"
 msgstr ""
@@ -186,12 +248,12 @@ msgstr ""
 msgid "Orders"
 msgstr ""
 
-#: templates/orders/order1.html:76
-msgid "Build your hair profile"
+#: templates/orders/list.html:48
+msgid "DownloadOrders"
 msgstr ""
 
-#: templates/orders/order1.html:81
-msgid "hair type"
+#: templates/orders/order1.html:76
+msgid "Build your hair profile"
 msgstr ""
 
 #: templates/orders/order1.html:172 templates/orders/order2.html:100
@@ -284,18 +346,6 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: templates/orders/order3.html:117
-msgid "SHAMPOO COLOR"
-msgstr ""
-
-#: templates/orders/order3.html:128
-msgid "CONDITIONER COLOR"
-msgstr ""
-
-#: templates/orders/order3.html:143
-msgid "Fragrance"
-msgstr ""
-
 #: templates/orders/order3.html:147
 msgctxt "fragrance"
 msgid "all(you)ealyptus"
@@ -316,24 +366,20 @@ msgctxt "fragrance"
 msgid "feeling (f)ineapple"
 msgstr ""
 
-#: templates/orders/order3.html:155
-msgid "Fragrance Strength"
-msgstr ""
-
 #: templates/orders/order3.html:165
-msgid "Formula name(printed in bottle)"
+msgid "FormulaName(printed in bottle)"
 msgstr ""
 
 #: templates/orders/order4.html:69
-msgid "HAIR QUIZ"
+msgid "HairQuiz"
 msgstr ""
 
 #: templates/orders/order4.html:70
-msgid "Choose a size"
+msgid "ChooseASize"
 msgstr ""
 
 #: templates/orders/order4.html:73
-msgid "SIZE"
+msgid "Size"
 msgstr ""
 
 #: templates/orders/order4.html:76 templates/orders/order4.html:80

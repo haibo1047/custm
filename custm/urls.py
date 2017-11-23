@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^$', bookviews.home, name= 'home'),
     url(r'^orders/order1$', bookviews.order1, name='order1'),
+    url(r'^orders/downloadOrders$', bookviews.downloadOrders, name='downloadOrders'),
     url(r'^orders/saveOrder$', bookviews.saveOrder, name='saveOrder'),
     url(r'^order/delete/(?P<id>[0-9]+)/$', bookviews.delete, name='deleteorder'),
     url(r'^order/(?P<id>[0-9]+)/$', bookviews.detail, name='orderdetail'),

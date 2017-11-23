@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
+{% load staticfiles %}
 
 {% block breadcrumb %}
 <li class="breadcrumb-item active">orders</li>
 {% endblock %}
 
 {% block content %}
+
+<script type="text/javascript">
+
+    function fdownload(){
+        location = "{% url 'downloadOrders' %}"
+    }
+
+</script>
   <table class="table table-bordered">
     <thead >
       <tr>
         <th>order info</th>
-        <th>create_user</th>
-        <th>goals</th>
-        <th>create_date</th>
+        <th>{% trans "CreateUser"%}</th>
+        <th>{% trans "Goals"%}</th>
+        <th>{% trans "CreateDate"%}</th>
         <th>operation</th>
       </tr>
     </thead>
@@ -36,4 +46,7 @@
       {% endfor %}
     </tbody>
   </table>
+    <div style="text-align:right">
+        <p><a href="#" class="text-white bg-dark" onclick="fdownload()" target="_blank">{% trans "DownloadOrders"%}</a></p>
+    </div>
 {% endblock %}
