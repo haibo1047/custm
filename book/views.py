@@ -75,6 +75,8 @@ def downloadOrders(request):
         ])
     return response
 
+def wetest(request):
+    return HttpResponse("hello")
 
 def test(request):
     # send_mail("ilovecupid-account registration","thanks for your registration", None, ("haibo1047@163.com",))
