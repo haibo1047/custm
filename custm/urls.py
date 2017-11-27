@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^orders/$', bookviews.orderlist, name='orderlist'),
     url(r'^search/(?P<search>.+)/$', bookviews.search, name='search'),
     url(r'^test/$', bookviews.test, name='test'),
+    url(r'^wetest/$', bookviews.wetest, name='wetest'),
     url(r'^admin/', admin.site.urls),
 
     url(r'^i18n/', include('django.conf.urls.i18n')),
