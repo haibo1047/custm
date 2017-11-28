@@ -75,18 +75,20 @@ def downloadOrders(request):
         ])
     return response
 
-def wetest(request):
-    return HttpResponse("hello")
+
+def weQ(request):
+    if "opt" not in request.GET:
+        return HttpResponse("404")
+    opt = request.GET.get("opt")
+    val = request.GET.get("v")
+    if opt == "login":
+        openid = wechatlogin(val)
+        return HttpResponse(openid)
+    return HttpResponse()
 
 def test(request):
     # send_mail("ilovecupid-account registration","thanks for your registration", None, ("haibo1047@163.com",))
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
-    writer = csv.writer(response)
-    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
-    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
-    return response
-    # return render(request,"base.html")
+    return HttpResponse("test")
 
 def home(request):
     context = {}
