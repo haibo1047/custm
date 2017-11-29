@@ -15,6 +15,10 @@
         location = "{% url 'downloadOrders' %}"
     }
 
+    function deleteOrder(){
+      return confirm("confirm to delete the order?")
+    }
+
 </script>
   <table class="table table-bordered">
     <thead >
@@ -37,7 +41,7 @@
             <td class="align-middle">{{ order.create_date }}</td>
             <td class="align-middle">
           {%    if user.is_superuser %}
-              <a href="{% url 'deleteorder' order.pk %}">delete</a>  &nbsp;|
+              <a href="{% url 'deleteorder' order.pk %}" onclick="return deleteOrder()">delete</a>  &nbsp;|
             &nbsp;
           {%    endif %}
               <a href="{% url 'orderdetail' order.pk %}">view</a>
