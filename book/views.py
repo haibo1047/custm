@@ -24,7 +24,7 @@ from django.utils.translation import ugettext as _
 #     template_name = "orders/detail.html"
 
 
-@login_required
+#@login_required
 def orderlist(request):
     orders = findMyOrders(request.user)
     # output = "|".join([ str(eo.id)+eo.color for eo in orders])
@@ -33,7 +33,7 @@ def orderlist(request):
     return HttpResponse(template.render(context,request))
 
 
-@login_required
+#@login_required
 def downloadOrders(request):
     orders = findMyOrders(request.user)
     # output = "|".join([ str(eo.id)+eo.color for eo in orders])
@@ -101,7 +101,7 @@ def home(request):
     context['st'] = settings
     return render(request,"home.html",context)
 
-@login_required
+#@login_required
 def order1(request):
     context = {}
     if request.method == "GET":
@@ -117,7 +117,7 @@ def order1(request):
 
     return render(request, "orders/"+nextorderpage+".html", context)
 
-@login_required
+#@login_required
 def saveOrder(request):
     myOrders = findMyOrders(request.user)
     print(len(myOrders))
