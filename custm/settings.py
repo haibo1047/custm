@@ -42,6 +42,7 @@ EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "cupid@ilovecupid.cn"
 
+WE_SECRET = os.environ.get("we_secret")
 # Application definition
 
 INSTALLED_APPS = [

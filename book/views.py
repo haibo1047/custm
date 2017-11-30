@@ -82,8 +82,10 @@ def weQ(request):
     opt = request.GET.get("opt")
     val = request.GET.get("v")
     if opt == "login":
-        openid = wechatlogin(val)
-        return HttpResponse(openid)
+        openidRet = wechatlogin(val)
+        return HttpResponse(openidRet)
+    elif opt == "chkuser":
+        return HttpResponse(wechatcheckuser(val))
     return HttpResponse()
 
 def test(request):

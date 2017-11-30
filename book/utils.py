@@ -1,4 +1,8 @@
-import urllib,json
+import urllib.request,urllib.parse
+import json
+from django.conf import settings
+from django.contrib.auth.models import User
+
 
 def convertTupleToDict(tp):
     d = {}
@@ -30,8 +34,8 @@ if __name__ == "__main__":
 
 def wechatlogin(code):
     values = {
-        "appid":"wxb1d4e6d4e12fddc8",
-        "secret":"7be9d98d16276430a26848ca0c8ccd50",
+        "appid":getattr(settings, 'WE_APPID',"wxb1d4e6d4e12fddc8"),
+        "secret":getattr(settings, 'WE_SECRET'),
         "js_code":code,
         "grant_type":"authorization_code"
     }
@@ -48,6 +52,13 @@ def wechatlogin(code):
         print(res)
         return res
     return None
+
+def wechatcheckuser(openid):
+    try:
+        theuser = User.objects.get(username=openid)
+    except User.DoesNotExist:
+        return False
+    return theuser is not None
 
 if __name__ == "__main__":
     wechatlogin("abc")
