@@ -34,10 +34,10 @@ if __name__ == "__main__":
 
 def wechatlogin(code):
     values = {
-        "appid":getattr(settings, 'WE_APPID'),
-        "secret":getattr(settings, 'WE_SECRET'),
-        "js_code":code,
-        "grant_type":"authorization_code"
+        "appid": getattr(settings, 'WE_APPID'),
+        "secret": getattr(settings, 'WE_SECRET'),
+        "js_code": code,
+        "grant_type": "authorization_code"
     }
     url = "https://api.weixin.qq.com/sns/jscode2session"
     data = urllib.parse.urlencode(values)
@@ -57,8 +57,10 @@ def wechatcheckuser(openid):
     try:
         theuser = User.objects.get(username=openid)
     except User.DoesNotExist:
-        return False
-    return theuser is not None
+        return 0
+    if theuser is not None:
+        return 1
+    return 0
 
 def wechatregister(registerData):
     rd = json.loads(urllib.request.unquote(registerData))
