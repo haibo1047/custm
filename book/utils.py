@@ -1,8 +1,8 @@
 import urllib.request,urllib.parse
-import json
+import json,base64
 from django.conf import settings
 from django.contrib.auth.models import User
-
+from .WXBizDataCrypt import WXBizDataCrypt
 
 def convertTupleToDict(tp):
     d = {}
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
 def wechatlogin(code):
     values = {
-        "appid":getattr(settings, 'WE_APPID',"wxb1d4e6d4e12fddc8"),
+        "appid":getattr(settings, 'WE_APPID'),
         "secret":getattr(settings, 'WE_SECRET'),
         "js_code":code,
         "grant_type":"authorization_code"
@@ -59,6 +59,20 @@ def wechatcheckuser(openid):
     except User.DoesNotExist:
         return False
     return theuser is not None
+
+def wechatregister(registerData):
+    rd = json.loads(urllib.request.unquote(registerData))
+    session_key = rd["session_key"]
+    encryptedData = rd["encryptedData"]
+    iv = rd["iv"]
+    pc = WXBizDataCrypt(getattr(settings, 'WE_APPID'), session_key)
+    info = ""
+    try:
+        info = pc.decrypt(encryptedData,iv)
+    except UnicodeDecodeError:
+        print('can not decrypt')
+    return info
+
 
 if __name__ == "__main__":
     wechatlogin("abc")

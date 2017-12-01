@@ -86,6 +86,8 @@ def weQ(request):
         return HttpResponse(openidRet)
     elif opt == "chkuser":
         return HttpResponse(wechatcheckuser(val))
+    elif opt == "register":
+        return HttpResponse(wechatregister(val))
     return HttpResponse()
 
 def test(request):
