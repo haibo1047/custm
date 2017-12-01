@@ -1,8 +1,10 @@
 import urllib.request,urllib.parse
 import json,base64
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,UserManager
 from .WXBizDataCrypt import WXBizDataCrypt
+
+from django.db.utils import IntegrityError
 
 def convertTupleToDict(tp):
     d = {}
@@ -71,11 +73,21 @@ def wechatregister(registerData):
     pc = WXBizDataCrypt(getattr(settings, 'WE_APPID'), session_key)
     info = "0"
     try:
-        info = json.dumps(pc.decrypt(encryptedData,iv))
-        print(info)
+        userInfo = pc.decrypt(encryptedData, iv)
+        openid = userInfo['openId']
+        nickName = userInfo['nickName']
+        u = User.objects.create_user(username=openid,
+                                        email=nickName+"@ilovecupid.cn",
+                                        password='ilovecupid')
+        u.last_name= nickName
+        u.save()
+
+        return 1
     except UnicodeDecodeError:
         print('can not decrypt')
-    return info
+    except IntegrityError:
+        print('db error')
+    return 0
 
 
 if __name__ == "__main__":
