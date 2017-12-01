@@ -37,13 +37,13 @@ SESSION_COOKIE_AGE = 900
 EMAIL_HOST = "mail.ilovecupid.cn"
 EMAIL_PORT = 25
 EMAIL_HOST_USER = "cupid"
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = "cupid@ilovecupid.cn"
 
 WE_APPID = "wxb1d4e6d4e12fddc8"
-WE_SECRET = os.environ.get("we_secret")
+WE_SECRET = os.getenv("we_secret")
 # Application definition
 
 INSTALLED_APPS = [

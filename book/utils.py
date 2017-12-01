@@ -39,6 +39,7 @@ def wechatlogin(code):
         "js_code": code,
         "grant_type": "authorization_code"
     }
+    print(values)
     url = "https://api.weixin.qq.com/sns/jscode2session"
     data = urllib.parse.urlencode(values)
     data = data.encode('utf-8')
@@ -79,3 +80,4 @@ def wechatregister(registerData):
 
 if __name__ == "__main__":
     wechatlogin("abc")
+    print(getattr(settings, 'EMAIL_HOST_PASSWORD'))
