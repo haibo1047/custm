@@ -69,6 +69,7 @@ def wechatregister(registerData):
     info = "0"
     try:
         info = json.dumps(pc.decrypt(encryptedData,iv))
+        print(info)
     except UnicodeDecodeError:
         print('can not decrypt')
     return info
