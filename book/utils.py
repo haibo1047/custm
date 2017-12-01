@@ -66,9 +66,9 @@ def wechatregister(registerData):
     encryptedData = rd["encryptedData"]
     iv = rd["iv"]
     pc = WXBizDataCrypt(getattr(settings, 'WE_APPID'), session_key)
-    info = ""
+    info = "0"
     try:
-        info = pc.decrypt(encryptedData,iv)
+        info = json.dumps(pc.decrypt(encryptedData,iv))
     except UnicodeDecodeError:
         print('can not decrypt')
     return info
