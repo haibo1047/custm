@@ -63,10 +63,10 @@ function fback(){
 
 
 <div id="main">
+	<div class="order-steps green">HAIR QUIZ <sup>4/4</sup></div>
 
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center order">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-			<p class="progress green">{% trans "HairQuiz"%} <sup>4/4</sup></p>
 			<h1 class="order">{% trans "ChooseASize"%}</h1>
 		</div>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -102,13 +102,12 @@ function fback(){
 			</ul>
 		</div>
 	</div>
+
+
+	<div align="center">
+		<button type="button" class="btn btn-primary btn-lg" onclick="fback()">{% trans "Previous"%}</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
+	</div>
 </div>
-
-<div align="center">
-    <button type="button" class="btn btn-primary btn-lg" onclick="fback()">{% trans "Previous"%}</button>
-    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
-</div>
-
-
 
 {% endblock %}
