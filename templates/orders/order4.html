@@ -39,17 +39,19 @@ function fnext(){
         alert("please choose size")
         return;
     }
+    $("#form1").action = "{% url 'saveOrder' %}"
     $("#form1").submit()
 }
 
 
 function fback(){
     $("#id_nextorderpage").val("order3")
+    $("#form1").action = "{% url 'order1' %}"
     $("#form1").submit()
 }
 </script>
 
-<form method="post" id="form1" action="{% url 'saveOrder' %}">
+<form method="post" id="form1">
     {% csrf_token %}
     {% for field in form.hidden_fields %}
         <!--{% if field.errors %}-->
