@@ -76,6 +76,21 @@ $(function() {
 <table class="table" style="border-style:none;">
     <tbody>
     <tr>
+        <td colspan="3" align="center">{% trans "Profile"%}</td>
+    </tr>
+    <tr>
+      <td  align="center">
+          sex:
+      </td>
+      <td  align="center">
+            age:
+      </td>
+      <td  align="center">
+            zone:
+      </td>
+    </tr>
+
+    <tr>
         <td colspan="3" align="center">{% trans "HairType"%}</td>
     </tr>
     <tr>
@@ -167,7 +182,7 @@ $(function() {
 
 
 <div align="center">
-    <button type="button" class="btn btn-primary btn-lg" onclick="fnext()">{% trans "Continue"%}</button>
+    <a class="navbutton" onclick="fnext()">{% trans "Continue"%}</a>
 </div>
 
 
